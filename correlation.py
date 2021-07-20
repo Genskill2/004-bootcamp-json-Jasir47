@@ -7,7 +7,7 @@ def load_journal(name) :
     s = f.read()
     global d
     d = json.loads(s)
-    
+    return d
 
 
 def compute_phi(name,event) :
@@ -66,13 +66,14 @@ def compute_correlations(name) :
     for i in all_events :        
         compute_phi(name,i)
         correlation_values.update({ i : correlation } )
+    return correlation_values   
         
 def diagnose(name) :
     compute_correlations(name)
-    print(max(correlation_values, key=correlation_values.get))
-    print(min(correlation_values, key=correlation_values.get))
+    return(max(correlation_values, key=correlation_values.get))
+    return(min(correlation_values, key=correlation_values.get))
 
-diagnose("journal.json")  
+ 
                  
     
     
