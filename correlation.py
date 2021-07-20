@@ -70,8 +70,7 @@ def compute_correlations(name) :
         
 def diagnose(name) :
     compute_correlations(name)
-    return(max(correlation_values, key=correlation_values.get))
-    return(min(correlation_values, key=correlation_values.get))
+    return(max(correlation_values, key=correlation_values.get)) and (min(correlation_values, key=correlation_values.get))
 
  
                  
