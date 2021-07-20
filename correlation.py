@@ -2,15 +2,15 @@
 import math
 import json
 correlation_values = { }
-def load_journal(file) :
-    f = open(file)
+def load_journal(name) :
+    f = open(name)
     s = f.read()
     global d
     d = json.loads(s)
     
 
 
-def compute_phi(file,event) :
+def compute_phi(name,event) :
   
     n11 = []
     n00 = []
@@ -21,7 +21,7 @@ def compute_phi(file,event) :
     np1 = []
     np0 = []
        
-    f = open(file)
+    f = open(name)
     s = f.read()
     d = json.loads(s)
    
@@ -55,24 +55,24 @@ def compute_phi(file,event) :
 
 
 
-def compute_correlations(file) :   
+def compute_correlations(name) :   
     
-    load_journal(file)
+    load_journal(name)
     all_events = set()
     for i in d :
         h =  i["events"]
         for i in h :
            all_events.add(i)
     for i in all_events :        
-        compute_phi(file,i)
+        compute_phi(name,i)
         correlation_values.update({ i : correlation } )
         
-def diagnose(file) :
-    compute_correlations(file)
+def diagnose(name) :
+    compute_correlations(name)
     print(max(correlation_values, key=correlation_values.get))
     print(min(correlation_values, key=correlation_values.get))
 
-diagnose("journal.json")   
+diagnose("journal.json")  
                  
     
     
